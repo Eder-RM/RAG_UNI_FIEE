@@ -25,6 +25,11 @@ class SimpleTokenizer:
 
     def decode(self, ids: List[int]) -> str:
         return " ".join(self._inv[i] for i in ids)
+    
+    def unique_token_count(self, text: str) -> int:
+        ids = self.encode(text)
+        return len(set(ids))
+
 
 
 if __name__ == "__main__":        # CLI rápida
