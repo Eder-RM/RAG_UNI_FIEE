@@ -1,115 +1,37 @@
-# RAG-UNI-FIEE
+# Laboratorio de Pruebas de Software
 
-Repositorio oficial del proyecto **Recuperación de Información Aumentada (RAG)**  
-para la Facultad de Ingeniería Eléctrica y Electrónica – **Universidad Nacional de Ingeniería (UNI)**.
+## Descripción
 
-<p align="center">
-  <img src="https://img.shields.io/github/actions/workflow/status/&lt;ORG&gt;/&lt;REPO&gt;/ci.yml?label=CI" alt="CI Status"/>
-  <img src="https://img.shields.io/endpoint?url=https://codecov.io/api/gh/&lt;ORG&gt;/&lt;REPO&gt;/coverage_badge.json" alt="Coverage"/>
-  <a href="https://github.com/&lt;ORG&gt;/&lt;REPO&gt;/projects/1">
-    <img src="https://img.shields.io/badge/kanban-board-blueviolet" alt="Project Board"/>
-  </a>
-</p>
+Este repositorio contiene la implementación de un tokenizador simple en Python junto con pruebas unitarias, de integración y desarrollo dirigido por pruebas (TDD).
 
----
+## Estructura del proyecto
 
-## 🎯 Objetivo general
-Construir un **chatbot RAG** que responda de forma inmediata, confiable y con referencias a:
+- `src/`: Código fuente del tokenizador y módulos relacionados.
+- `tests/`: Pruebas unitarias e integración usando pytest.
+- `user_test.py`: Script para interacción manual con el tokenizador.
 
-* Reglamentos académicos (créditos, repitencia, egreso, etc.).
-* Sílabos, bibliografía y contenidos de los cursos.
-* Procedimientos administrativos frecuentes.
+## Proceso realizado
 
----
+1. **Pruebas unitarias:** Se implementaron pruebas para verificar funcionalidades básicas como `encode`, `decode` y conteo de tokens únicos.
+2. **Pruebas de integración:** Se probó la interacción entre módulos mediante funciones que combinan funcionalidades.
+3. **TDD:** Se aplicó la metodología para agregar la función `unique_token_count`, escribiendo primero la prueba que falló y luego implementando la función.
+4. **Pruebas de versión:** Se crearon tags y ramas en Git para simular lanzamientos y validar que las pruebas siguieran pasando.
+5. **Pruebas de usuario:** Se desarrolló un script CLI para interacción manual y se diseñó un cuestionario de retroalimentación.
 
-## 🤖 ¿Qué es un sistema RAG?
-*Recuperación* + *Generación*:  
-1. **Recuperador** (vector store) trae los documentos más relevantes  
-2. **Generador** (LLM) redacta la respuesta citando las fuentes  
-➡️ Respuestas actualizadas, con grounding documental y mínimas alucinaciones.
+## Cómo ejecutar
 
----
+- Instalar dependencias:  
+  `pip install pytest`
 
-## 🧑‍🤝‍🧑 Equipo XP
+- Ejecutar todas las pruebas:  
+  `python -m pytest`
 
-| Inicial | Nombre  | Ubicación | Rol XP† |
-|---------|---------|-----------|---------|
-| **CS**  | César   | Lima-PE   | Dev / PO |
-| **DG**  | Diego   | Lima-PE   | Dev |
-| **FK**  | Franklin  | Lima-PE   | Dev |
+- Ejecutar script de prueba manual:  
+  `python user_test.py`
 
-† _Programación Extrema_ → todos son desarrolladores, el **Product Owner** rota cada sprint para fomentar _collective ownership_.
+## Conclusiones
 
-*Pair-programming rotativo*: cada día se forma una dupla distinta; la tercera persona revisa el PR.
-
----
-
-## 🚦 Estado actual
-
-| Entregable                               | Progreso |
-|------------------------------------------|----------|
-| **Sprint 1 – Tokenizer MVP**             | ✅ Completado (19 → 26 abr 2025) |
-| Recolección de reglamentos oficiales     | 🔄 En curso |
-| Selección de componentes (LangChain, FAISS, etc.) | 🔄 Evaluación |
-| Integración de sílabos y bibliografía    | ⏳ Pendiente |
-| UI web/chatbot                           | ⏳ Pendiente |
-| Pruebas piloto con estudiantes           | ⏳ Futuro |
-
----
-
-## 🗺️ Hoja de ruta en 8 sprints (1 semana c/u)
-
-| Sprint | Fechas 2025 (lun-dom) | Objetivo técnico                                               | Pareja inicial | Revisor |
-|-------:|----------------------|----------------------------------------------------------------|----------------|---------|
-| **1** | 19 abr → 26 abr | **Tokenizer MVP + CI**                                | CS + DG | JV |
-| **2** | 27 abr → 03 may | Ingesta & limpieza PDFs/HTML                           | DG + JV | CS |
-| **3** | 04 may → 10 may | Indexado vectorial (FAISS/Chroma)                      | JV + CS | DG |
-| **4** | 11 may → 17 may | Recuperador semántico + reranking                      | CS + DG | JV |
-| **5** | 18 may → 24 may | LLM wrapper & prompt-engineering                       | DG + JV | CS |
-| **6** | 25 may → 31 may | API REST (FastAPI) + Docker                            | JV + CS | DG |
-| **7** | 01 jun → 07 jun | Front-end React/Tailwind + pruebas e2e                 | CS + DG | JV |
-| **8** | 08 jun → 14 jun | Observabilidad, Helm chart y despliegue                | DG + JV | CS |
-
----
-
-## 📑 Historias de usuario (HU) por sprint
-
-<details>
-<summary><strong>Sprint 1 — Tokenizer MVP (✅ cerrado)</strong></summary>
-
-| HU | Título                                    | Pts | PR / Issue |
-|----|-------------------------------------------|-----|-----------|
-| HU-1 | Tokenizar texto crudo (UTF-8, puntuación) | 3 | # xx |
-| HU-2 | Configurar CI (Black, Ruff, pytest-cov)   | 2 | # xx |
-| HU-3 | CLI round-trip encode → decode            | 1 | # xx |
-
-</details>
-
-<details>
-<summary><strong>Sprint 2 — Ingesta & limpieza</strong></summary>
-
-| HU | Título                                     | Pts | Estado |
-|----|--------------------------------------------|-----|--------|
-| HU-4 | ETL de PDFs/HTML a texto plano            | 3 | # xx|
-| HU-5 | Aplicar algoritmos de OCR                 | 2 | # xx |
-| HU-6 | Agregar a una Base Vectorial              | 1 | # xx |
-</details>
-
-<!-- Copiar/pegar y adaptar para HUs de sprints 3-8 -->
-
----
-
-## 🛠️ Estructura del repositorio
-
-
-```bash
-$ python -m src.tokenizer "¡Hola, UNI!"
-IDs : [0, 1, 2, 3]
-Back: ¡ hola , uni !
-
-Un badge provisional de cobertura (actualízalo más adelante si usas Codecov):
-
-```markdown
-![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
-
+- La aplicación pasó todas las pruebas implementadas, demostrando buena calidad y estabilidad.
+- La metodología TDD facilitó el desarrollo ordenado y seguro de nuevas funcionalidades.
+- La retroalimentación del usuario permitió identificar mejoras en la interfaz.
 
